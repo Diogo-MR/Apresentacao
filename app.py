@@ -1,63 +1,38 @@
+import streamlit as st
 import os
-import webbrowser
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-from threading import Timer
-import subprocess
-import socket
 
-# Classe personalizada do manipulador HTTP
-class MyHandler(SimpleHTTPRequestHandler):
-    def end_headers(self):
-        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
-        self.send_header('Pragma', 'no-cache')
-        self.send_header('Expires', '0')
-        SimpleHTTPRequestHandler.end_headers(self)
+st.set_page_config(page_title="Apresentação Reforma Tributária", layout="wide")
 
-def find_available_port(start_port=8000, max_tries=10):
-    for port in range(start_port, start_port + max_tries):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            try:
-                s.bind(('localhost', port))
-                return port
-            except OSError:
-                continue
-    raise OSError("Nenhuma porta disponível encontrada.")
+st.markdown("""
+    <style>
+        .stSlider > div { padding-left: 2rem; padding-right: 2rem; }
+        .slide-frame iframe { border: none; width: 100%; height: 1000px; }
+    </style>
+""", unsafe_allow_html=True)
 
-def open_browser(port):
-    webbrowser.open(f'http://localhost:{port}/index.html')
+st.title("📊 Apresentação Interativa - Reforma Tributária")
+st.subheader("FH Souza Advogados")
 
-# Função principal
-def main():
-    print("Iniciando Apresentação da Reforma Tributária...")
+# Lista de slides (ordem exata)
+slides = [
+    "slide1.html",
+    "slide2.html",
+    "slide3.html",
+    "slide4.html",
+    "slide5.html",
+    "slide6.html",
+    "slide7.html"
+]
 
-    # Combinar os slides
-    print("Combinando slides...")
-    try:
-        subprocess.run(["python", "combine_slides.py"], check=True)
-    except subprocess.CalledProcessError:
-        print("Erro ao combinar slides. Tentando método alternativo...")
-        try:
-            from combine_slides import combine_slides
-            combine_slides()
-        except Exception as e:
-            print(f"Erro no método alternativo de combinação: {e}")
-            return
+slide_index = st.slider("Navegar pelos slides", 0, len(slides) - 1, 0,
+                        format="%d", label_visibility="visible")
 
-    try:
-        port = find_available_port()
-        print(f"Iniciando servidor web na porta {port}...")
-        server = HTTPServer(('localhost', port), MyHandler)
-        Timer(1, open_browser, args=(port,)).start()
-        print(f"Servidor rodando em http://localhost:{port}/index.html")
-        print("Pressione Ctrl+C para encerrar o servidor")
-        server.serve_forever()
-    except Exception as e:
-        print(f"Erro ao iniciar o servidor: {e}")
-    finally:
-        try:
-            server.shutdown()
-        except:
-            pass
+slide_file = slides[slide_index]
 
-if __name__ == "__main__":
-    main()
+# Caminho completo
+if not os.path.exists(slide_file):
+    st.error(f"Slide {slide_file} não encontrado.")
+else:
+    with open(slide_file, "r", encoding="utf-8") as f:
+        html_content = f.read()
+    st.components.v1.html(html_content, height=1000, scrolling=True)
