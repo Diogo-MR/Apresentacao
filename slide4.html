@@ -1,0 +1,68 @@
+<!-- SLIDE 4: Análise Comparativa -->
+<div class="slide bg-white" id="slide4">
+    <div class="h-full flex flex-col">
+        <header class="bg-fh-navy p-4">
+            <div class="flex items-center">
+                <div class="bg-fh-navy p-2 rounded-lg">
+                    <span class="text-fh-green text-2xl font-bold">FH</span>
+                </div>
+                <h2 class="text-white text-xl ml-4">Análise Comparativa</h2>
+            </div>
+        </header>
+        
+        <div class="flex-grow p-10 flex flex-col items-center">
+            <h3 class="text-3xl font-bold text-fh-navy mb-10 text-center">Comparativo dos Cenários</h3>
+            
+            <div class="w-full max-w-6xl mb-10">
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="w-full max-w-6xl overflow-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-fh-navy text-white">
+                            <th class="p-4 text-left">Aspecto</th>
+                            <th class="p-4 text-center">Sem Consultoria</th>
+                            <th class="p-4 text-center">Com FH Souza</th>
+                            <th class="p-4 text-center">Sem Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-fh-lightgray">
+                            <td class="p-4 font-semibold">Carga Tributária Efetiva</td>
+                            <td class="p-4 text-center bg-red-100 text-red-700">+15% a +20%</td>
+                            <td class="p-4 text-center bg-green-100 text-green-700">Até -10%</td>
+                            <td class="p-4 text-center bg-yellow-100 text-yellow-700">+5% a +8%</td>
+                        </tr>
+                        <tr class="border-b border-fh-lightgray">
+                            <td class="p-4 font-semibold">Aproveitamento de Créditos</td>
+                            <td class="p-4 text-center bg-red-100 text-red-700">Baixo (< 60%)</td>
+                            <td class="p-4 text-center bg-green-100 text-green-700">Alto (> 95%)</td>
+                            <td class="p-4 text-center bg-yellow-100 text-yellow-700">Médio (70-80%)</td>
+                        </tr>
+                        <tr class="border-b border-fh-lightgray">
+                            <td class="p-4 font-semibold">Risco de Autuações</td>
+                            <td class="p-4 text-center bg-red-100 text-red-700">Alto</td>
+                            <td class="p-4 text-center bg-green-100 text-green-700">Muito Baixo</td>
+                            <td class="p-4 text-center bg-yellow-100 text-yellow-700">Moderado</td>
+                        </tr>
+                        <tr class="border-b border-fh-lightgray">
+                            <td class="p-4 font-semibold">Adaptação Operacional</td>
+                            <td class="p-4 text-center bg-red-100 text-red-700">Traumática</td>
+                            <td class="p-4 text-center bg-green-100 text-green-700">Planejada</td>
+                            <td class="p-4 text-center bg-yellow-100 text-yellow-700">Reativa</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold">Posição Competitiva</td>
+                            <td class="p-4 text-center bg-red-100 text-red-700">Deteriorada</td>
+                            <td class="p-4 text-center bg-green-100 text-green-700">Fortalecida</td>
+                            <td class="p-4 text-center bg-yellow-100 text-yellow-700">Neutra</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
